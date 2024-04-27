@@ -50,7 +50,6 @@ const Input: React.FC<InputProps> = ({
         </div>
       )}
       <textarea
-        className="w-full p-4 pt-6 font-light bg-white border-2 rounded-md outline-none transition disabled:opacity-70 disabled:cursor-not-allowed pl-4 focus:border-black"
         id={id}
         disabled={disabled}
         {...register(id, {
@@ -67,22 +66,24 @@ const Input: React.FC<InputProps> = ({
         placeholder=" " // space on purpose for formatting
         type={type === "percentage" ? "number" : type}
         className={`
-          peer
-          w-full
-          p-4
-          pt-6 
-          font-light 
-          bg-white 
-          border-2
-          rounded-md
-          outline-none
-          transition
-          disabled:opacity-70
-          disabled:cursor-not-allowed
-          ${formatDollar || formatPercentage || formatNumber ? "pl-9" : "pl-4"}
-          ${errors[id] ? "border-sky-500" : "border-neutral-300"}
-          ${errors[id] ? "focus:border-sky-500" : "focus:border-black"}
-        `}
+            peer
+            w-full
+            p-4
+            pt-6 
+            font-light 
+            bg-white 
+            border-2
+            rounded-md
+            outline-none
+            transition
+            disabled:opacity-70
+            disabled:cursor-not-allowed
+            ${
+              formatDollar || formatPercentage || formatNumber ? "pl-9" : "pl-4"
+            }
+            ${errors[id] ? "border-sky-500" : "border-neutral-300"}
+            ${errors[id] ? "focus:border-sky-500" : "focus:border-black"}
+           `}
       />
 
       <label
