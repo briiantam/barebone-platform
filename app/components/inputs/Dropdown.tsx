@@ -68,7 +68,9 @@ const Dropdown: React.FC<DropdownProps> = ({
         </select>
         {errors[id] && (
           <p className="mt-1 text-sm text-red-500 absolute">
-            {errors[id].message}
+            {typeof errors[id] === "object" && errors[id].message
+              ? String(errors[id].message)
+              : ""}
           </p>
         )}
       </div>
