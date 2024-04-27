@@ -19,16 +19,16 @@ interface ListingInfoProps {
   startupRevenue: number | null;
   startupEBITDA: number | null;
   netIncome: number | null;
-  imageSrc: string;
-  price: number;
-  title: string;
+  imageSrc?: string;
+  price?: number;
+  title?: string;
   startupWebsiteUrl?: string; // Optional property
-  valuationExpectations: number;
+  valuationExpectations?: number;
   previousFundingRaised?: number; // Optional property
   lastRoundFundingRaised?: number; // Optional property
   lastRoundValuation?: number; // Optional property
-  founderOwnership: number;
-  employeeCount: number;
+  founderOwnership?: number;
+  employeeCount?: number;
   category: string | null; // Update the type to string | null to match the schema
   locationValue: string;
 }
