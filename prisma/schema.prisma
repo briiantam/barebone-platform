@@ -43,21 +43,47 @@ model Account {
 }
 
 model Listing {
-  id             String @id @default(auto()) @map("_id") @db.ObjectId
-  title String
-  description String
-  imageSrc String
-  createdAt DateTime @default(now())
-  category  String
-  roomCount Int
-  bathroomCount Int
-  guestCount Int
-  locationValue String
-  userId String @db.ObjectId
-  price Int
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  reservations Reservation[]
+  id                       String        @id @default(auto()) @map("_id") @db.ObjectId
+  title                    String
+  description              String
+  imageSrc                 String
+  createdAt                DateTime      @default(now())
+  category1                String?
+  category2                String?
+  category3                String?
+  startupEBITDA            Int?
+  netIncome                Int?
+  startupRevenue           Int?
+  locationValue            String
+  userId                   String        @db.ObjectId
+  price                    Int
+  startupWebsiteUrl        String?
+  valuationExpectations    Int?
+  previousFundingRaised    Int?
+  lastRoundFundingRaised   Int?
+  lastRoundValuation       Int?
+  founderOwnership         Int
+  employeeCount            Int
+  startupDetailedDescription String
+  founderFirstName1        String
+  founderLastName1         String
+  founderRole1             String
+  founderLinkedIn1         String?
+  founderFirstName2        String?
+  founderLastName2         String?
+  founderRole2             String?
+  founderLinkedIn2         String?
+  founderFirstName3        String?
+  founderLastName3         String?
+  founderRole3             String?
+  founderLinkedIn3         String?
+  founderFirstName4        String?
+  founderLastName4         String?
+  founderRole4             String?
+  founderLinkedIn4         String?
+  preRevenue               Boolean       @default(false)
+  user                     User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  reservations             Reservation[]
 }
 
 model Reservation {

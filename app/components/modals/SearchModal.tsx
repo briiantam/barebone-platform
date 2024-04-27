@@ -29,9 +29,9 @@ const SearchModal = () => {
   const [step, setStep] = useState(STEPS.LOCATION);
 
   const [location, setLocation] = useState<CountrySelectValue>();
-  const [guestCount, setGuestCount] = useState(1);
-  const [roomCount, setRoomCount] = useState(1);
-  const [bathroomCount, setBathroomCount] = useState(1);
+  const [startupRevenue, setstartupRevenue] = useState(1);
+  const [startupEBITDA, setstartupEBITDA] = useState(1);
+  const [netIncome, setnetIncome] = useState(1);
   const [dateRange, setDateRange] = useState<Range>({
     startDate: new Date(),
     endDate: new Date(),
@@ -68,9 +68,9 @@ const SearchModal = () => {
     const updatedQuery: any = {
       ...currentQuery,
       locationValue: location?.value,
-      guestCount,
-      roomCount,
-      bathroomCount,
+      startupRevenue,
+      startupEBITDA,
+      netIncome,
     };
 
     if (dateRange.startDate) {
@@ -97,11 +97,11 @@ const SearchModal = () => {
     searchModal,
     location,
     router,
-    guestCount,
-    roomCount,
+    startupRevenue,
+    startupEBITDA,
     dateRange,
     onNext,
-    bathroomCount,
+    netIncome,
     params,
   ]);
 
@@ -156,24 +156,24 @@ const SearchModal = () => {
       <div className="flex flex-col gap-8">
         <Heading title="More information" subtitle="Find your perfect place!" />
         <Counter
-          onChange={(value) => setGuestCount(value)}
-          value={guestCount}
+          onChange={(value) => setstartupRevenue(value)}
+          value={startupRevenue}
           title="Guests"
           subtitle="How many guests are coming?"
         />
         <hr />
         <Counter
-          onChange={(value) => setRoomCount(value)}
-          value={roomCount}
+          onChange={(value) => setstartupEBITDA(value)}
+          value={startupEBITDA}
           title="Rooms"
           subtitle="How many rooms do you need?"
         />
         <hr />
         <Counter
           onChange={(value) => {
-            setBathroomCount(value);
+            setnetIncome(value);
           }}
-          value={bathroomCount}
+          value={netIncome}
           title="Bathrooms"
           subtitle="How many bathrooms do you need?"
         />

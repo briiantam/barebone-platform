@@ -16,14 +16,14 @@ const Search = () => {
   const locationValue = params?.get("locationValue");
   const startDate = params?.get("startDate");
   const endDate = params?.get("endDate");
-  const guestCount = params?.get("guestCount");
+  const startupRevenue = params?.get("startupRevenue");
 
   const locationLabel = useMemo(() => {
     if (locationValue) {
       return getByValue(locationValue as string)?.label;
     }
 
-    return "Anywhere";
+    return "Sector";
   }, [locationValue, getByValue]);
 
   const durationLabel = useMemo(() => {
@@ -39,16 +39,16 @@ const Search = () => {
       return `${diff} Days`;
     }
 
-    return "Any Week";
+    return "Location";
   }, [startDate, endDate]);
 
   const guestLabel = useMemo(() => {
-    if (guestCount) {
-      return `${guestCount} Guests`;
+    if (startupRevenue) {
+      return `${startupRevenue} Guests`;
     }
 
-    return "Add Guests";
-  }, [guestCount]);
+    return "Fundraising Stage";
+  }, [startupRevenue]);
 
   return (
     <div
@@ -112,7 +112,7 @@ const Search = () => {
           <div
             className="
               p-2 
-              bg-rose-500 
+              bg-sky-500 
               rounded-full 
               text-white
             "
