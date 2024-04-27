@@ -58,10 +58,12 @@ const Input: React.FC<InputProps> = ({
             value: maxLength,
             message: `This field must be at most ${maxLength} characters long`,
           },
-          pattern: validateUrl && {
-            value: urlPattern,
-            message: "Please enter a valid URL",
-          },
+          pattern: validateUrl
+            ? {
+                value: urlPattern,
+                message: "Please enter a valid URL",
+              }
+            : undefined,
         })}
         placeholder=" " // space on purpose for formatting
         type={type === "percentage" ? "number" : type}
@@ -109,7 +111,9 @@ const Input: React.FC<InputProps> = ({
         {label}
       </label>
       {errors[id] && (
-        <p className="text-red-500 text-xs mt-1">{errors[id].message}</p>
+        <p className="text-red-500 text-xs mt-1">
+          {errors[id]?.message as string}
+        </p>
       )}
     </div>
   );

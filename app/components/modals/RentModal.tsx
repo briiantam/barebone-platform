@@ -43,7 +43,7 @@ const RentModal = () => {
 
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
-  const productStatusOptions: DropdownOption[] = [
+  const productStatusOptions = [
     { label: "Just an Idea", value: "idea" },
     { label: "Minimum Viable Product", value: "mvp" },
     { label: "Fully Developed Product", value: "developed_product" },

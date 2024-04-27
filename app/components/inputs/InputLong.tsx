@@ -58,32 +58,31 @@ const Input: React.FC<InputProps> = ({
             value: maxLength,
             message: `This field must be at most ${maxLength} characters long`,
           },
-          pattern: validateUrl && {
-            value: urlPattern,
-            message: "Please enter a valid URL",
-          },
+          pattern: validateUrl
+            ? {
+                value: urlPattern,
+                message: "Please enter a valid URL",
+              }
+            : undefined,
         })}
         placeholder=" " // space on purpose for formatting
-        type={type === "percentage" ? "number" : type}
         className={`
-            peer
-            w-full
-            p-4
-            pt-6 
-            font-light 
-            bg-white 
-            border-2
-            rounded-md
-            outline-none
-            transition
-            disabled:opacity-70
-            disabled:cursor-not-allowed
-            ${
-              formatDollar || formatPercentage || formatNumber ? "pl-9" : "pl-4"
-            }
-            ${errors[id] ? "border-sky-500" : "border-neutral-300"}
-            ${errors[id] ? "focus:border-sky-500" : "focus:border-black"}
-           `}
+    peer
+    w-full
+    p-4
+    pt-6 
+    font-light 
+    bg-white 
+    border-2
+    rounded-md
+    outline-none
+    transition
+    disabled:opacity-70
+    disabled:cursor-not-allowed
+    ${formatDollar || formatPercentage || formatNumber ? "pl-9" : "pl-4"}
+    ${errors[id] ? "border-sky-500" : "border-neutral-300"}
+    ${errors[id] ? "focus:border-sky-500" : "focus:border-black"}
+  `}
       />
 
       <label
@@ -111,7 +110,9 @@ const Input: React.FC<InputProps> = ({
         {label}
       </label>
       {errors[id] && (
-        <p className="text-red-500 text-xs mt-1">{errors[id].message}</p>
+        <p className="text-red-500 text-xs mt-1">
+          {errors[id]?.message as string}
+        </p>
       )}
     </div>
   );
