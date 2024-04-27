@@ -16,9 +16,9 @@ const Map = dynamic(() => import("../Map"), {
 interface ListingInfoProps {
   user: SafeUser;
   description: string;
-  startupRevenue: number;
-  startupEBITDA: number;
-  netIncome: number;
+  startupRevenue: number | null;
+  startupEBITDA: number | null;
+  netIncome: number | null;
   imageSrc: string;
   price: number;
   title: string;
@@ -29,7 +29,7 @@ interface ListingInfoProps {
   lastRoundValuation?: number; // Optional property
   founderOwnership: number;
   employeeCount: number;
-  category: string; // Update the type to string to match the schema
+  category: string | null; // Update the type to string | null to match the schema
   locationValue: string;
 }
 
@@ -82,19 +82,19 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
             text-neutral-500
           "
         >
-          <div>{startupRevenue} guests</div>
-          <div>{startupEBITDA} rooms</div>
-          <div>{netIncome} bathrooms</div>
+          {startupRevenue && <div>${startupRevenue}</div>}
+          {startupEBITDA && <div>${startupEBITDA}</div>}
+          {netIncome && <div>${netIncome}</div>}
         </div>
       </div>
       <hr />
-      {category && (
+      {/* {category && (
         <ListingCategory
           icon={category.icon}
           label={category?.label}
           description={category?.description}
         />
-      )}
+      )} */}
       <hr />
       <div
         className="

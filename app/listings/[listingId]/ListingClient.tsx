@@ -100,8 +100,8 @@ const ListingClient: React.FC<ListingClientProps> = ({
 
   // Extracting relevant information from our previous categories / listing info
   const category = useMemo(() => {
-    return categories.find((items) => items.label === listing.category);
-  }, [listing.category]);
+    return categories.find((items) => items.label === listing.category1);
+  }, [listing.category1]);
 
   return (
     <Container>
@@ -130,7 +130,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
           >
             <ListingInfo
               user={listing.user}
-              category={category}
+              category={listing.category1}
               description={listing.description}
               startupEBITDA={listing.startupEBITDA}
               startupRevenue={listing.startupRevenue}
