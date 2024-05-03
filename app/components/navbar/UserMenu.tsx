@@ -101,7 +101,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           <div className="flex flex-col cursor-pointer">
             {currentUser ? (
               <>
-                <MenuItem
+                {/* <MenuItem
                   label="Reachout Status" // who have I reached out to
                   onClick={() => router.push("/trips")}
                 />
@@ -109,7 +109,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                 <MenuItem
                   label="Inbound Status" // who reached out to me
                   onClick={() => router.push("/reservations")}
-                />
+                /> */}
                 <MenuItem
                   label="Favorites" // what I favourited
                   onClick={() => router.push("/favorites")}

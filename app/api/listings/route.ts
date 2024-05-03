@@ -48,7 +48,12 @@ export async function POST(request: Request) {
     founderRole4,
     founderLinkedIn4,
     preRevenue,
+    productStatusOptions,
   } = body;
+
+  const selectedProductStatus =
+    productStatusOptions.find((option: { value: any }) => option.value)
+      ?.value || "";
 
   const listing = await prisma.listing.create({
     data: {
@@ -87,6 +92,7 @@ export async function POST(request: Request) {
       founderLastName4,
       founderRole4,
       founderLinkedIn4,
+      // productStatusOptions: selectedProductStatus,
       preRevenue: preRevenue === "true",
       userId: currentUser.id,
     },

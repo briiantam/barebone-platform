@@ -17,8 +17,7 @@ import Heading from "../Heading";
 
 enum STEPS {
   LOCATION = 0,
-  DATE = 1,
-  INFO = 2,
+  INFO = 1,
 }
 
 const SearchModal = () => {
@@ -124,8 +123,8 @@ const SearchModal = () => {
   let bodyContent = (
     <div className="flex flex-col gap-8">
       <Heading
-        title="Where do you wanna go?"
-        subtitle="Find the perfect location!"
+        title="Where do you want to meet startups?"
+        // subtitle="Find the perfect location!"
       />
       <CountrySelect
         value={location}
@@ -136,47 +135,35 @@ const SearchModal = () => {
     </div>
   );
 
-  if (step === STEPS.DATE) {
-    bodyContent = (
-      <div className="flex flex-col gap-8">
-        <Heading
-          title="When do you plan to go?"
-          subtitle="Make sure everyone is free!"
-        />
-        <Calendar
-          onChange={(value) => setDateRange(value.selection)}
-          value={dateRange}
-        />
-      </div>
-    );
-  }
+  // if (step === STEPS.DATE) {
+  //   bodyContent = (
+  //     <div className="flex flex-col gap-8">
+  //       <Heading
+  //         title="When do you plan to go?"
+  //         subtitle="Make sure everyone is free!"
+  //       />
+  //       <Calendar
+  //         onChange={(value) => setDateRange(value.selection)}
+  //         value={dateRange}
+  //       />
+  //     </div>
+  //   );
+  // }
 
   if (step === STEPS.INFO) {
     bodyContent = (
       <div className="flex flex-col gap-8">
-        <Heading title="More information" subtitle="Find your perfect place!" />
+        <Heading
+          title="Fundraising Amount"
+          subtitle="Enter the amount you are willing to invest"
+        />
         <Counter
           onChange={(value) => setstartupRevenue(value)}
           value={startupRevenue}
-          title="Guests"
-          subtitle="How many guests are coming?"
+          title="Revenue"
+          subtitle="How much revenue is the startup generating?"
         />
         <hr />
-        <Counter
-          onChange={(value) => setstartupEBITDA(value)}
-          value={startupEBITDA}
-          title="Rooms"
-          subtitle="How many rooms do you need?"
-        />
-        <hr />
-        <Counter
-          onChange={(value) => {
-            setnetIncome(value);
-          }}
-          value={netIncome}
-          title="Bathrooms"
-          subtitle="How many bathrooms do you need?"
-        />
       </div>
     );
   }

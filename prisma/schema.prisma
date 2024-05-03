@@ -46,7 +46,7 @@ model Listing {
   id                       String        @id @default(auto()) @map("_id") @db.ObjectId
   title                    String
   description              String
-  imageSrc                 String
+  imageSrc                 String?
   createdAt                DateTime      @default(now())
   category1                String?
   category2                String?
@@ -81,6 +81,7 @@ model Listing {
   founderLastName4         String?
   founderRole4             String?
   founderLinkedIn4         String?
+  productStatusOptions     String
   preRevenue               Boolean       @default(false)
   user                     User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   reservations             Reservation[]

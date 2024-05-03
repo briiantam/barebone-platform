@@ -108,7 +108,7 @@ const LoginModal = () => {
         "
       >
         <p>
-          First time using Airbnb?
+          First time using Barebone?
           <span
             onClick={onToggle}
             className="

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback, useMemo } from "react";
-import { format } from "date-fns";
+import { IoRocketOutline } from "react-icons/io5";
 
 import useCountries from "@/app/hooks/useCountries";
 import { SafeListing, SafeReservation, SafeUser } from "@/app/types";
@@ -49,81 +49,80 @@ const ListingCard: React.FC<ListingCardProps> = ({
     [disabled, onAction, actionId]
   );
 
-  const price = useMemo(() => {
-    if (reservation) {
-      return reservation.totalPrice;
-    }
-
-    return data.price;
-  }, [reservation, data.price]);
-
-  const reservationDate = useMemo(() => {
-    if (!reservation) {
-      return null;
-    }
-
-    const start = new Date(reservation.startDate);
-    const end = new Date(reservation.endDate);
-
-    return `${format(start, "PP")} - ${format(end, "PP")}`;
-  }, [reservation]);
+  const categories = useMemo(() => {
+    const categoryArray = [data.category1, data.category2, data.category3];
+    return categoryArray.filter(Boolean);
+  }, [data.category1, data.category2, data.category3]);
 
   return (
     <div
-      onClick={() => router.push(`/listings/${data.id}`)} // Links to the individual listing page
-      className="col-span-1 cursor-pointer group"
+      onClick={() => router.push(`/listings/${data.id}`)}
+      className="overflow-hidden rounded-xl border border-gray-200"
     >
-      <div className="flex flex-col gap-2 w-full">
-        <div
-          className="
-            aspect-square 
-            w-full 
-            relative 
-            overflow-hidden 
-            rounded-xl
-          "
-        >
-          <Image
-            fill
-            className="
-              object-cover 
-              h-full 
-              w-full 
-              group-hover:scale-110 
-              transition
-            "
-            src={data.imageSrc}
-            alt="Listing"
-          />
-          <div
-            className="
-            absolute
-            top-3
-            right-3
-          "
-          >
-            <HeartButton listingId={data.id} currentUser={currentUser} />
+      <div className="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6">
+        <div className="flex-none">
+          <IoRocketOutline className="h-8 w-8 text-gray-400" />
+        </div>
+        <div className="text-l font-medium leading-6 text-gray-900">
+          {data.title}
+        </div>
+        <div className="ml-auto">
+          <HeartButton listingId={data.id} currentUser={currentUser} />
+        </div>
+      </div>
+      <div className="px-6 py-4">
+        <div className="w-full h-20 rounded-md overflow-hidden">
+          <p className="text-m text-gray-500 ">{data.description}</p>
+        </div>
+        <dl className="mt-6 space-y-4">
+          <div className="flex justify-between gap-x-4">
+            <dt className="text-sm font-medium text-gray-500">Location</dt>
+            <dd className="text-sm text-gray-900">{location?.label}</dd>
+          </div>
+          <div className="flex justify-between gap-x-4">
+            <dt className="text-sm font-medium text-gray-500">
+              Fundraising Amount (US$)
+            </dt>
+            <dd className="text-sm text-gray-900">
+              $ {data.price.toLocaleString()}
+            </dd>
+          </div>
+          <div className="flex justify-between gap-x-4">
+            <dt className="text-sm font-medium text-gray-500">
+              Valuation Expectations (US$)
+            </dt>
+            <dd className="text-sm text-gray-900">
+              ${" "}
+              {data.valuationExpectations
+                ? data.valuationExpectations.toLocaleString()
+                : ""}
+            </dd>
+          </div>
+        </dl>
+        <div className="mt-6">
+          <h3 className="text-sm font-medium text-gray-500">Categories</h3>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {categories.map((category, index) => (
+              <span
+                key={index}
+                className="inline-flex items-center rounded-md bg-gray-100 px-2 py-1 text-xs font-medium text-gray-800"
+              >
+                {category}
+              </span>
+            ))}
           </div>
         </div>
-        <div className="font-semibold text-lg">
-          {location?.region}, {location?.label}
-        </div>
-        <div className="font-light text-neutral-500">
-          {reservationDate || data.category1}
-        </div>
-        <div className="flex flex-row items-center gap-1">
-          <div className="font-semibold">$ {price}</div>
-          {!reservation && <div className="font-light">night</div>}
-        </div>
-        {onAction && actionLabel && (
+      </div>
+      {onAction && actionLabel && (
+        <div className="px-6 py-4">
           <Button
             disabled={disabled}
             small
             label={actionLabel}
             onClick={handleCancel}
           />
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

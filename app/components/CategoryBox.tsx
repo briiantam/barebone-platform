@@ -29,7 +29,7 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
 
     const updatedQuery: any = {
       ...currentQuery,
-      category: label, //URL wil be changed
+      category1: label, //URL wil be changed
     };
 
     // If the category is already selected, remove it from the query and go back to the default view

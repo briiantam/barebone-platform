@@ -30,7 +30,7 @@ enum STEPS {
   TEAM = 3, //team
   INFO = 4, //financials
   PRICE = 5, //fundraising amount
-  IMAGES = 6, //logo/cover/pitchbook?
+  // IMAGES = 6, //logo/cover/pitchbook?
 }
 
 const RentModal = () => {
@@ -147,7 +147,7 @@ const RentModal = () => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    if (step !== STEPS.IMAGES) {
+    if (step !== STEPS.PRICE) {
       return onNext();
     }
 
@@ -171,7 +171,7 @@ const RentModal = () => {
   };
 
   const actionLabel = useMemo(() => {
-    if (step === STEPS.IMAGES) {
+    if (step === STEPS.PRICE) {
       return "Create";
     }
 
@@ -521,21 +521,21 @@ const RentModal = () => {
     );
   }
 
-  if (step === STEPS.IMAGES) {
-    bodyContent = (
-      <div className="flex flex-col gap-6">
-        <Heading
-          title="Add a photo/banner of your startup"
-          subtitle="Your first impression for investors!"
-        />
+  // if (step === STEPS.IMAGES) {
+  //   bodyContent = (
+  //     <div className="flex flex-col gap-6">
+  //       <Heading
+  //         title="Add a photo/banner of your startup"
+  //         subtitle="Your first impression for investors!"
+  //       />
 
-        <ImageUpload
-          onChange={(value) => setCustomValue("imageSrc", value)}
-          value={imageSrc}
-        />
-      </div>
-    );
-  }
+  //       <ImageUpload
+  //         onChange={(value) => setCustomValue("imageSrc", value)}
+  //         value={imageSrc}
+  //       />
+  //     </div>
+  //   );
+  // }
 
   if (step === STEPS.PRICE) {
     bodyContent = (
